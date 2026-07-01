@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sadaf Rizwan — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0d0d0d;
+      --bg2:      #141414;
+      --bg3:      #1a1a1a;
+      --border:   #252525;
+      --border2:  #2e2e2e;
+      --green:    #00c96a;
+      --green-dim:#0a3d20;
+      --green-bg: #071510;
+      --white:    #e8e8e8;
+      --gray:     #888;
+      --gray-dim: #555;
+      --gray-dark:#333;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 48px;
+    }
+    .nav-brand { color: var(--green); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 12px;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links a::before { content: './'; color: var(--gray-dark); }
+
+    /* ── LAYOUT ── */
+    main { max-width: 820px; margin: 0 auto; padding: 0 32px 80px; }
+
+    section { padding-top: 64px; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .section-cmd {
+      color: var(--gray-dim);
+      font-size: 12px;
+    }
+    .section-cmd span { color: var(--green); }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── HERO ── */
+    #hero { padding-top: 72px; }
+
+    .boot-line {
+      color: var(--gray-dim);
+      font-size: 12px;
+      margin-bottom: 6px;
+      opacity: 0;
+      transform: translateY(4px);
+      animation: fadein 0.3s forwards;
+    }
+    .boot-line:nth-child(1) { animation-delay: 0.1s; }
+    .boot-line:nth-child(2) { animation-delay: 0.35s; }
+    .boot-line:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes fadein {
+      to { opacity: 1; transform: none; }
+    }
+
+    .hero-name {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.01em;
+      margin: 24px 0 6px;
+      opacity: 0;
+      animation: fadein 0.4s 0.8s forwards;
+    }
+    .hero-role {
+      color: var(--green);
+      font-size: 14px;
+      margin-bottom: 4px;
+      opacity: 0;
+      animation: fadein 0.4s 1s forwards;
+    }
+    .hero-location {
+      color: var(--gray-dim);
+      font-size: 12px;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadein 0.4s 1.1s forwards;
+    }
+    .hero-summary {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.75;
+      max-width: 600px;
+      border-left: 2px solid var(--green-dim);
+      padding-left: 16px;
+      opacity: 0;
+      animation: fadein 0.4s 1.25s forwards;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadein 0.4s 1.4s forwards;
+    }
+    .btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      padding: 9px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-primary {
+      background: var(--green);
+      color: #000;
+      border: none;
+      font-weight: 700;
+    }
+    .btn-primary:hover { background: #00e87a; }
+    .btn-outline {
+      background: transparent;
+      color: var(--green);
+      border: 1px solid var(--green-dim);
+    }
+    .btn-outline:hover { border-color: var(--green); background: var(--green-bg); }
+
+    .prompt-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 40px;
+      color: var(--gray-dim);
+      font-size: 12px;
+      opacity: 0;
+      animation: fadein 0.4s 1.6s forwards;
+    }
+    .cursor {
+      width: 8px;
+      height: 15px;
+      background: var(--green);
+      display: inline-block;
+      animation: blink 1.1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ── STACK ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+    .skill-group { }
+    .skill-label {
+      color: var(--gray-dark);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      color: #999;
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 3px;
+      font-family: 'Space Mono', monospace;
+      transition: all 0.15s;
+    }
+    .tag:hover { border-color: var(--green-dim); color: var(--green); }
+    .tag.highlight {
+      background: var(--green-bg);
+      border-color: var(--green-dim);
+      color: var(--green);
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-item {
+      border-left: 1px solid var(--border2);
+      padding-left: 20px;
+      margin-bottom: 36px;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .exp-item:hover { border-color: var(--green); }
+    .exp-item::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border2);
+      border: 1px solid var(--border2);
+      position: absolute;
+      left: -5px;
+      top: 4px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .exp-item:hover::before { background: var(--green); border-color: var(--green); }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .exp-title { color: #fff; font-size: 14px; font-weight: 700; }
+    .exp-company { color: var(--green); font-size: 13px; margin-top: 1px; }
+    .exp-meta {
+      color: var(--gray-dim);
+      font-size: 11px;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .exp-bullets { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+    .exp-bullet {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #666;
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+    }
+    .exp-bullet::before { content: '▸'; position: absolute; left: 0; color: var(--gray-dark); font-size: 10px; top: 2px; }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 16px;
+    }
+    .proj-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px;
+      transition: border-color 0.2s, background 0.2s;
+      cursor: default;
+    }
+    .proj-card:hover { border-color: var(--green-dim); background: #111; }
+    .proj-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    .proj-name { color: #fff; font-size: 13px; font-weight: 700; }
+    .proj-live {
+      font-size: 10px;
+      background: var(--green-bg);
+      color: var(--green);
+      border: 1px solid var(--green-dim);
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+    .proj-stack {
+      color: var(--gray-dim);
+      font-size: 11px;
+      margin-bottom: 10px;
+      font-family: 'Space Mono', monospace;
+    }
+    .proj-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ── EDUCATION & CERTS ── */
+    .edu-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .edu-degree { color: #fff; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .edu-uni { color: var(--gray); font-size: 13px; font-family: 'Inter', sans-serif; }
+    .edu-year { color: var(--gray-dim); font-size: 12px; margin-top: 2px; }
+    .edu-badge {
+      background: var(--green-bg);
+      border: 1px solid var(--green-dim);
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .certs-list { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .cert-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--gray);
+      font-family: 'Inter', sans-serif;
+    }
+    .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-dim); flex-shrink: 0; }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .contact-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 18px;
+      transition: border-color 0.2s;
+    }
+    .contact-card:hover { border-color: var(--green-dim); }
+    .contact-card a { text-decoration: none; }
+    .contact-key { color: var(--gray-dark); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .contact-val { color: var(--green); font-size: 12px; }
+    .contact-status {
+      background: var(--green-bg);
+      border: 1px solid var(--green-dim);
+      border-radius: 4px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--green);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 32px;
+      text-align: center;
+      color: var(--gray-dark);
+      font-size: 11px;
+      margin-top: 40px;
+    }
+    footer span { color: var(--green-dim); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .nav-links { gap: 16px; }
+      main { padding: 0 16px 60px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .exp-meta { text-align: left; }
+      .hero-actions { flex-direction: column; }
+      .btn { justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, .boot-line, .hero-name, .hero-role, .hero-location,
+      .hero-summary, .hero-actions, .prompt-line, .cursor { animation: none !important; opacity: 1 !important; transform: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand">sadaf.dev</div>
+    <ul class="nav-links">
+      <a href="#stack">stack</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#contact">contact</a>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="hero">
+      <!-- <div class="boot-line">$ initialising portfolio...</div> -->
+      <!-- <div class="boot-line">$ loading sadaf_rizwan.json &nbsp;<span style="color:#00c96a">✓</span></div> -->
+      <div class="boot-line">$ status: <span style="color:#00c96a">open to opportunities</span></div>
+
+      <div class="hero-name">Sadaf Rizwan</div>
+      <div class="hero-role">Data Analyst &amp; Software Developer</div>
+      <div class="hero-location">New Delhi, India &nbsp;·&nbsp; Remote-ready &nbsp;·&nbsp; 1+ yrs experience</div>
+
+      <p class="hero-summary">
+        I build data pipelines, BI dashboards, and backend integrations that turn messy data into decisions.
+        Experienced across Python, SQL, Power BI, and workflow automation — from enterprise analytics to live production systems.
+      </p>
+
+      <div class="hero-actions">
+        <a href="mailto:sadafrizwan04@gmail.com" class="btn btn-primary">→ get in touch</a>
+        <a href="https://linkedin.com/in/sadafrizwan" target="_blank" rel="noopener" class="btn btn-outline">linkedin ↗</a>
+      </div>
+
+      <div class="prompt-line">
+        <span style="color:#444">~ $</span>
+        <span style="color:#555">exploring opportunities</span>
+        <span class="cursor"></span>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section id="stack">
+      <div class="section-header reveal">
+        <span class="section-cmd">$ <span>cat</span> ./stack.txt</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-grid reveal">
+        <div class="skill-group">
+          <div class="skill-label">// languages</div>
+          <div class="skill-tags">
+            <span class="tag highlight">Python</span>
+            <span class="tag highlight">SQL</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">HTML / CSS</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">// analytics &amp; BI</div>
+          <div class="skill-tags">
+            <span class="tag highlight">Power BI</span>
+            <span class="tag highlight">DAX</span>
+            <span class="tag">Power Query</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">MySQL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">// libraries</div>
+          <div class="skill-tags">
+            <span class="tag highlight">Pandas</span>
+            <span class="tag highlight">NumPy</span>
+            <span class="tag">Scikit-learn</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">NLTK</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">// frameworks</div>
+          <div class="skill-tags">
+            <span class="tag">Django REST</span>
+            <span class="tag">Flask</span>
+            <span class="tag">Vue.js</span>
+            <span class="tag">Streamlit</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">// ml &amp; nlp</div>
+          <div class="skill-tags">
+            <span class="tag highlight">Scikit-learn</span>
+            <span class="tag">LSTM</span>
+            <span class="tag">Time Series</span>
+            <span class="tag">NLP</span>
+            <span class="tag">TextBlob</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-label">// tools &amp; platforms</div>
+          <div class="skill-tags">
+            <span class="tag highlight">n8n</span>
+            <span class="tag">AWS</span>
+            <span class="tag">Git</span>
+            <span class="tag">Dynamics 365</span>
+            <span class="tag">Jupyter</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-header reveal">
+        <span class="section-cmd">$ <span>ls</span> ./experience/</span>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Data Analyst</div>
+            <div class="exp-company">GIGC</div>
+          </div>
+          <div class="exp-meta">Jul 2025 – Dec 2025<br>Abu Dhabi, UAE</div>
+        </div>
+        <div class="exp-bullets">
+          <div class="exp-bullet">Designed and maintained Power BI dashboards (DAX + Power Query) to track operational KPIs across multiple business functions in real time.</div>
+          <div class="exp-bullet">Standardised data pipelines and automated data flows, significantly reducing manual reporting effort for cross-functional stakeholders.</div>
+          <div class="exp-bullet">Performed data validation, cleansing, and integrity checks across Microsoft Dynamics 365 — maintaining 95%+ quality standards on large structured datasets.</div>
+          <div class="exp-bullet">Authored Functional Requirement Documents (FRDs) and technical documentation for analytics system enhancements.</div>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Product Developer — Data &amp; Analytics</div>
+            <div class="exp-company">Stepping Cloud</div>
+          </div>
+          <div class="exp-meta">Aug 2024 – Jul 2025<br>Dubai, UAE</div>
+        </div>
+        <div class="exp-bullets">
+          <div class="exp-bullet">Built Python backend services and Django REST APIs, designing data workflows that supported analytics features across enterprise applications.</div>
+          <div class="exp-bullet">Developed real-time analytics dashboards in Vue.js for operational metrics, enabling data-driven decisions for product and ops teams.</div>
+          <div class="exp-bullet">Optimised SQL queries and database schemas (PostgreSQL + MySQL) to improve data retrieval speed across reporting pipelines.</div>
+          <div class="exp-bullet">Managed application integrations between internal tools and third-party platforms — ensuring seamless cross-system data flows.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-header reveal">
+        <span class="section-cmd">$ <span>ls</span> ./projects/</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-grid">
+
+        <div class="proj-card reveal">
+          <div class="proj-card-header">
+            <div class="proj-name">Real estate workflow automation</div>
+            <span class="proj-live">live</span>
+          </div>
+          <div class="proj-stack">n8n · Supabase · PostgreSQL · AI APIs</div>
+          <div class="proj-desc">End-to-end intelligent automation system for a real estate client — covering lead capture, automated follow-ups, and operational reporting. Built and deployed in production.</div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-card-header">
+            <a href="https://github.com/SadafRizwan-hub/stock-price-prediction-LSTM" target="_blank" rel="noopener" ><div class="proj-name">Stock trend prediction</div></a>
+          </div>
+          <div class="proj-stack">Python · LSTM · Streamlit · Yahoo Finance API</div>
+          <div class="proj-desc">Time series forecasting web app integrating real-time financial data with LSTM neural networks — production-ready with interactive visualisation and data storytelling.</div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-card-header">
+            <a href="https://github.com/SadafRizwan-hub/analysis-predictive-model-on-ebola" target="_blank" rel="noopener"><div class="proj-name">Ebola outbreak modelling</div></a>
+          </div>
+          <div class="proj-stack">Python · Flask · Scikit-learn</div>
+          <div class="proj-desc">Regression and classification models to forecast outbreak impact across regions. Full ML pipeline: preprocessing, feature engineering, model selection, cross-validation, and result visualisation.</div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-card-header">
+            <a href="https://github.com/SadafRizwan-hub/Web-Scraping-British-Airways" target="_blank" rel="noopener"><div class="proj-name">British Airways sentiment analysis</div></a>
+          </div>
+          <div class="proj-stack">Python · NLTK · TextBlob · NLP</div>
+          <div class="proj-desc">Multi-class sentiment classifier on unstructured customer reviews. Identified patterns in customer feedback and proposed a comparative analysis framework against competitor airlines.</div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-card-header">
+            <a href="https://github.com/SadafRizwan-hub/sanitary-napkins-EDA" target="_blank" rel="noopener"><div class="proj-name">Sanitary napkins sales EDA</div></a>
+          </div>
+          <div class="proj-stack">Python · Pandas · Matplotlib</div>
+          <div class="proj-desc">Regional sales analysis across India — identified correlations, surfaced data quality issues, and delivered a structured stakeholder-facing analytical report with actionable recommendations.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="section-header reveal">
+        <span class="section-cmd">$ <span>cat</span> ./education.txt</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="edu-card reveal">
+        <div>
+          <div class="edu-degree">B.Tech — Computer Science &amp; Engineering</div>
+          <div class="edu-uni">Jamia Hamdard University, New Delhi</div>
+          <div class="edu-year">2020 – 2024 &nbsp;·&nbsp; Graduated with Distinction</div>
+        </div>
+        <div class="edu-badge">9.01 / 10</div>
+      </div>
+      <div class="certs-list reveal">
+        <div class="cert-item"><span class="cert-dot"></span>Data Analytics with Python — NPTEL (2024)</div>
+        <div class="cert-item"><span class="cert-dot"></span>Introduction to Data Science — Infosys Springboard (2024)</div>
+        <div class="cert-item"><span class="cert-dot"></span>Data Science Job Simulation — Forage (2024)</div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-header reveal">
+        <span class="section-cmd">$ <span>cat</span> ./contact.txt</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-status reveal">
+        <span class="status-dot"></span>
+        Available for full-time and remote roles — Data Analyst · Python Developer · BI Engineer
+      </div>
+      <div class="contact-grid" style="margin-top: 16px;">
+        <div class="contact-card reveal">
+          <div class="contact-key">// email</div>
+          <a href="mailto:sadafrizwan04@gmail.com"><div class="contact-val">sadafrizwan04@gmail.com</div></a>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-key">// linkedin</div>
+          <a href="https://linkedin.com/in/sadafrizwan" target="_blank" rel="noopener"><div class="contact-val">linkedin.com/in/sadafrizwan ↗</div></a>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-key">// location</div>
+          <div class="contact-val">New Delhi, India</div>
+        </div>
+        <div class="contact-card reveal">
+          <div class="contact-key">// languages</div>
+          <div class="contact-val">English (fluent) · Hindi (native)</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>sadaf_rizwan</span> · built with HTML + CSS + JS
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
